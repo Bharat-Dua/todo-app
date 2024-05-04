@@ -43,7 +43,16 @@ app.get("/update-todo", (req, res) => {
   }
 });
 
+// delete todo
+
+app.get("/delete-todo", (req, res) => {
+  try {
+    res.render("deleteTodo");
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 // listen server
 const port = process.env.PORT || 3000;
-
 app.listen(port, () => console.log(`server is listening at ${port}`));
