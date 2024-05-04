@@ -1,9 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const path = require("path");
 
 // init app
 const app = express();
-
 // connect to MongoDB database
 const connectionUrl = "mongodb://0.0.0.0:27017/todoDb";
 mongoose
@@ -12,7 +12,9 @@ mongoose
   .catch((err) => console.log(err.message));
 // view engine
 app.set("view engine", "ejs");
-
+app.use(express.static(path.join(__dirname, "public")));
+console.log(__dirname)
+console.log(__filename)
 // app routes
 // show all todo
 app.get("/", (req, res) => {
@@ -27,7 +29,7 @@ app.get("/", (req, res) => {
 
 app.get("/add-todo", (req, res) => {
   try {
-    res.render("newTODO");
+    res.render("newTodo");
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
