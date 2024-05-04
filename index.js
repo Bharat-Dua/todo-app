@@ -33,6 +33,16 @@ app.get("/add-todo", (req, res) => {
   }
 });
 
+//  update todo
+
+app.get("/update-todo", (req, res) => {
+  try {
+    res.render("updateTodo");
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 // listen server
 const port = process.env.PORT || 3000;
 
