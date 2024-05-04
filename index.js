@@ -13,8 +13,17 @@ mongoose
 // view engine
 app.set("view engine", "ejs");
 
-// listen server
+// app routes
 
+app.get("/", (req, res) => {
+  try {
+    res.render("index");
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// listen server
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => console.log(`server is listening at ${port}`));
