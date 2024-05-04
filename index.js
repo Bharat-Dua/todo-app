@@ -14,10 +14,20 @@ mongoose
 app.set("view engine", "ejs");
 
 // app routes
-
+// show all todo
 app.get("/", (req, res) => {
   try {
     res.render("index");
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// add new todo
+
+app.get("/add-todo", (req, res) => {
+  try {
+    res.render("newTODO");
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
