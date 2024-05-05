@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
+const { title } = require("process");
 
 // init app
 const app = express();
@@ -13,23 +14,20 @@ mongoose
 // view engine
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
-console.log(__dirname)
-console.log(__filename)
 // app routes
 // show all todo
 app.get("/", (req, res) => {
   try {
-    res.render("index");
+    res.render("index", { title: "All Todo" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
-
 // add new todo
 
 app.get("/add-todo", (req, res) => {
   try {
-    res.render("newTodo");
+    res.render("newTodo", { title: "add Todo" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -39,7 +37,7 @@ app.get("/add-todo", (req, res) => {
 
 app.get("/update-todo", (req, res) => {
   try {
-    res.render("updateTodo");
+    res.render("updateTodo", { title: "update Todo" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -49,7 +47,7 @@ app.get("/update-todo", (req, res) => {
 
 app.get("/delete-todo", (req, res) => {
   try {
-    res.render("deleteTodo");
+    res.render("deleteTodo", { title: "delete Todo" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
