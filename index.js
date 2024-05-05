@@ -1,5 +1,7 @@
+const { timeStamp } = require("console");
 const express = require("express");
 const mongoose = require("mongoose");
+const { type } = require("os");
 const path = require("path");
 const { title } = require("process");
 
@@ -14,6 +16,25 @@ mongoose
 // view engine
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
+
+// schema
+
+const todoSchema = mongoose.Schema(
+  {
+    todoTitle: {
+      type: String,
+      required: true,
+    },
+    todoDesc: {
+      type: String,
+      required: true,
+    },
+  },
+  { timeStamp: true }
+);
+
+const Todo = mongoose.model("todo", todoSchema);
+
 // app routes
 // show all todo
 app.get("/", (req, res) => {
