@@ -1,12 +1,9 @@
-const { timeStamp } = require("console");
 const express = require("express");
-const mongoose = require("mongoose");
-const { type } = require("os");
 const path = require("path");
 const bodyParser = require("body-parser");
 const moment = require("moment");
-const { title } = require("process");
-const connectMongodb = require("./init/mongoDb")
+const connectMongodb = require("./init/mongoDb");
+const Todo = require("./models/Todo");
 // init app
 const app = express();
 // connect to MongoDB database
@@ -15,23 +12,6 @@ connectMongodb();
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
-// schema
-
-const todoSchema = mongoose.Schema(
-  {
-    title: {
-      type: String,
-      required: true,
-    },
-    description: {
-      type: String,
-      required: true,
-    },
-  },
-  { timestamps: true }
-);
-
-const Todo = mongoose.model("todo", todoSchema);
 
 // app routes
 // show all todo
