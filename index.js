@@ -38,9 +38,10 @@ const Todo = mongoose.model("todo", todoSchema);
 
 // app routes
 // show all todo
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
   try {
-    res.render("index", { title: "All Todo" });
+    const todos = await Todo.find({}).sort({ createdAt: -1 });
+    res.render("index", { title: "All Todo", todos });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

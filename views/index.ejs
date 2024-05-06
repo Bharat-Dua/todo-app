@@ -13,15 +13,18 @@
       <th>Action</th>
     </tr>
     <tr>
-      <td>Test todo title</td>
-      <td>Test Description</td>
-      <td>Test Created</td>
-      <td>Test Updated</td>
+      <% for(let i=0;i<todos.length;i++) { %>
+
+      <td> <%= todos[i].title %></td>
+      <td> <%=todos[i].description %></td>
+      <td> <%=todos[i].createdAt %></td>
+      <td> <%= todos[i].updatedAt %> </td>
       <td>
         <a href="/update-todo" class="btn">Edit</a>
         <a href="/delete-todo" class="btn">Delete</a>
       </td>
     </tr>
+    <% } %>
   </table>
 </div>
 <%- include('partials/footer') %>
