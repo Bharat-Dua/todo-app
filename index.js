@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const { type } = require("os");
 const path = require("path");
 const bodyParser = require("body-parser");
+const moment = require("moment");
 const { title } = require("process");
 
 // init app
@@ -41,6 +42,7 @@ const Todo = mongoose.model("todo", todoSchema);
 app.get("/", async (req, res) => {
   try {
     const todos = await Todo.find({}).sort({ createdAt: -1 });
+    res.locals.moment=moment
     res.render("index", { title: "All Todo", todos });
   } catch (error) {
     res.status(500).json({ message: error.message });
