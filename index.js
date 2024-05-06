@@ -6,15 +6,11 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const moment = require("moment");
 const { title } = require("process");
-
+const connectMongodb = require("./init/mongoDb")
 // init app
 const app = express();
 // connect to MongoDB database
-const connectionUrl = "mongodb://0.0.0.0:27017/todoDb";
-mongoose
-  .connect(connectionUrl)
-  .then(() => console.log("Database connection successful"))
-  .catch((err) => console.log(err.message));
+connectMongodb();
 // view engine
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
@@ -42,7 +38,7 @@ const Todo = mongoose.model("todo", todoSchema);
 app.get("/", async (req, res) => {
   try {
     const todos = await Todo.find({}).sort({ createdAt: -1 });
-    res.locals.moment=moment
+    res.locals.moment = moment;
     res.render("index", { title: "All Todo", todos });
   } catch (error) {
     res.status(500).json({ message: error.message });
