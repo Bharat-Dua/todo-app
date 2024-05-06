@@ -3,6 +3,10 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const connectMongodb = require("./init/mongoDb");
 const todoRoute = require("./routes/todo");
+const dotenv = require("dotenv");
+
+dotenv.config();
+
 // init app
 const app = express();
 // connect to MongoDB database
@@ -14,7 +18,5 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // routes middleware
 app.use("/", todoRoute);
-
-
 
 module.exports = app;
