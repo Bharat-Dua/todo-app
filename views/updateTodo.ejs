@@ -4,14 +4,14 @@
   <h2 class="todo-title">Update todo</h2>
   <div>
     <a href="/" class="btn">Back</a>
-    <form action="" method="">
+    <form action="/update-todo/<%= todo._id %>" method="post">
       <div class="update-todo">
         <div class="form-group">
           <label for="title" class="text-light">Title</label>
           <input
             type="text"
             name="title"
-            value=""
+            value="<%= todo.title %>"
             placeholder="type todo title here"
           />
         </div>
@@ -20,7 +20,7 @@
           <input
             type="text"
             name="description"
-            value=""
+            value="<%= todo.description %>"
             placeholder="type todo description here"
           />
         </div>

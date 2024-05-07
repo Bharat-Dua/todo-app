@@ -14,13 +14,12 @@
     </tr>
     <tr>
       <% for(let i=0;i<todos.length;i++) { %>
-
       <td> <%= todos[i].title %></td>
       <td> <%=todos[i].description %></td>
       <td> <%=moment(todos[i].createdAt).format("MMMM Do YYYY, h:mm:ss") %></td>
       <td> <%=moment(todos[i].updatedAt).format("MMMM Do YYYY, h:mm:ss") %></td>
       <td>
-        <a href="/update-todo" class="btn">Edit</a>
+        <a href="/update-todo?id=<%= todos[i]._id %>" class="btn">Edit</a>
         <a href="/delete-todo" class="btn">Delete</a>
       </td>
     </tr>

@@ -17,4 +17,5 @@ router.get("/update-todo", todoControllers.updateTodoFormController);
 
 router.get("/delete-todo", todoControllers.deleteTodoFormController);
 
+router.post("/update-todo/:id", todoControllers.updateTodoController);
 module.exports = router;

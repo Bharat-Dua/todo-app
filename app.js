@@ -4,13 +4,12 @@ const bodyParser = require("body-parser");
 const connectMongodb = require("./init/mongoDb");
 const todoRoute = require("./routes/todo");
 const dotenv = require("dotenv");
-
 dotenv.config();
-
 // init app
 const app = express();
 // connect to MongoDB database
 connectMongodb();
+
 // view engine
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
