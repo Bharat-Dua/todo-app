@@ -31,12 +31,25 @@ const updateTodoFormController = async (req, res) => {
 
 const deleteTodoFormController = (req, res) => {
   try {
-    res.render("deleteTodo", { title: "delete Todo" });
+    const { id } = req.params;
+
+    res.render("deleteTodo", { title: "delete Todo", id });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
-
+const deleteTodoController = async (req, res) => {
+  try {
+    const { id, confirm } = req.query;
+    if (confirm === "yes") {
+      await Todo.findByIdAndDelete(id)
+    }
+    // await Todo.remove({ _id: id });
+    res.redirect("/");
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 const addTodoController = async (req, res) => {
   try {
     const { title, description } = req.body;
@@ -74,4 +87,5 @@ module.exports = {
   deleteTodoFormController,
   addTodoController,
   updateTodoController,
+  deleteTodoController,
 };
